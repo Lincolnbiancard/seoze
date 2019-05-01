@@ -1,10 +1,11 @@
 <?php
 require_once("cabecalho.php");
-require_once("ModelPedido.php");
+require_once("DaoPedido.php");
 
 $id = $_GET['id'];
-$class = new Pedido();
-$pedido = $class->buscaPedido($conexao, $id);
+
+$class = new DaoPedido($conexao);
+$pedido = $class->buscaPedido($id);
 
 ?>
 

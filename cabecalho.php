@@ -2,6 +2,12 @@
 	error_reporting(E_ALL ^ E_NOTICE);
 	require_once("mostra-alerta.php"); 
 	require_once("logica-usuario.php");
+
+	function carregarClasse($nomeClasse){
+		require_once($nomeClasse . ".php");
+	}
+
+	// spl_autoload_register("carregarClasse");
 ?>
 
 <html>

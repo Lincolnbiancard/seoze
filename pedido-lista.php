@@ -1,6 +1,6 @@
 <?php
 	require_once("cabecalho.php");
-	require_once("ModelPedido.php");
+	require_once("DaoPedido.php");
 	require_once("logica-usuario.php");
 
 	verificaUsuario();
@@ -17,8 +17,8 @@
 	</tr>
 	<?php
 	
-	$pedidos = new Pedido();
-	$pedidos = $pedidos->listaPedidos($conexao);
+	$class = new DaoPedido($conexao);
+	$pedidos = $class->listaPedidos();
 
 	foreach($pedidos as $pedido) :
 	?>
@@ -34,7 +34,7 @@
 				</a>
 			</td>
 			<td>
-				<form action="remove-pedido.php" method="post">
+				<form action="<?= $class->removePedido($id) ?>" method="post">
 					<input type="hidden" name="id" value="<?=$pedido->getId()?>">
 					<button class="btn btn-danger">Deletar</button>
 				</form>
