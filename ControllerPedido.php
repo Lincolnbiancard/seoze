@@ -1,12 +1,13 @@
 <?php 
 require_once("cabecalho.php");
 require_once("ModelPedido.php");
+require_once("DaoPedido.php");
 
 verificaUsuario();
 
-class ControllerPedido {
+
 	
-	function addPedido(){
+	
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 
@@ -30,25 +31,27 @@ class ControllerPedido {
 		$object = json_decode($output);
 
 			$pedido = new Pedido();
-			$pedido->nome = $object->customer->name;
-			$pedido->data = $object->updated_at;
-			$pedido->canal_venda = $object->channel;
-			$pedido->status = $object->status->type;
+			$pedido->setNome($object->customer->name);
+			$pedido->setData($object->updated_at);
+			$pedido->setCanalVenda($object->channel);
+			$pedido->setStatus($object->status->type);
 
-			if($pedido->inserePedido($conexao, $pedido)) { ?>
-				<p class="text-success">O pedido <?= $pedido->nome ?>, <?= $pedido->data ?> foi adicionado.</p>
+			$daoPedido = new DaoPedido($conexao);
+
+			if($daoPedido->inserePedido($pedido)) { ?>
+				<p class="text-success">O pedido <?= $pedido->getNome() ?>, <?= $pedido->getData() ?> foi adicionado.</p>
 			<?php 
 			} else {
 				$msg = mysqli_error($conexao);
 			?>
-				<p class="text-danger">O pedido <?= $pedido->nome ?> não foi adicionado: <?= $msg?></p>
+				<p class="text-danger">O pedido <?= $pedido->getNome() ?> não foi adicionado: <?= $msg?></p>
 			<?php
 			}
 			?>
 			<?php
 
 		} //end else
-	}//end function 
-} //end class
+
+
 
  include("rodape.php"); ?>

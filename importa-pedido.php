@@ -13,7 +13,7 @@ verificaUsuario();
 
 <div class="cover">
         <h1 id="titulo">Cole a Url aqui para importar um pedido.</h1>
-        <form  class="flex-form" action="<?= ControllerPedido::addPedido(); ?>" method="POST">
+        <form  class="flex-form" action="ControllerPedido.php" method="POST">
             <label for="from">
             <i class="ion-location"></i>
             </label>

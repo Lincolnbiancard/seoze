@@ -20,6 +20,7 @@
 	$class = new DaoPedido($conexao);
 	$pedidos = $class->listaPedidos();
 
+	
 	foreach($pedidos as $pedido) :
 	?>
 		<tr>
