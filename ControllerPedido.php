@@ -1,13 +1,20 @@
 <?php 
 require_once("cabecalho.php");
-require_once("ModelPedido.php");
 require_once("DaoPedido.php");
+require_once("ModelPedido.php");
 
 verificaUsuario();
 
+class ControllerPedido {
+	private $conexao;
 
+    function __construct(){
+		$this->conecta = new conecta();
+		$this->conexao = $this->conecta->conectar();
+    }
 	
-	
+	public function insere()
+	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 
@@ -36,13 +43,13 @@ verificaUsuario();
 			$pedido->setCanalVenda($object->channel);
 			$pedido->setStatus($object->status->type);
 
-			$daoPedido = new DaoPedido($conexao);
+			$daoPedido = new DaoPedido($this->conexao);
 
 			if($daoPedido->inserePedido($pedido)) { ?>
 				<p class="text-success">O pedido <?= $pedido->getNome() ?>, <?= $pedido->getData() ?> foi adicionado.</p>
 			<?php 
 			} else {
-				$msg = mysqli_error($conexao);
+				$msg = mysqli_error($this->conexao);
 			?>
 				<p class="text-danger">O pedido <?= $pedido->getNome() ?> não foi adicionado: <?= $msg?></p>
 			<?php
@@ -51,7 +58,13 @@ verificaUsuario();
 			<?php
 
 		} //end else
+	}
+}
 
-
+if($_SERVER['REQUEST_METHOD'] == 'POST') { // aqui é onde vai decorrer a chamada se houver um *request* POST
+    $pedido = new ControllerPedido;
+	$action = $_GET['action'];
+	$pedido->$action();
+}
 
  include("rodape.php"); ?>

@@ -1,8 +1,6 @@
 <?php 
 require_once("cabecalho.php");
 
-require_once("ControllerPedido.php");
-
 
 
 verificaUsuario();
@@ -13,7 +11,7 @@ verificaUsuario();
 
 <div class="cover">
         <h1 id="titulo">Cole a Url aqui para importar um pedido.</h1>
-        <form  class="flex-form" action="ControllerPedido.php" method="POST">
+        <form  class="flex-form" action="ControllerPedido.php?action=insere" method="POST">
             <label for="from">
             <i class="ion-location"></i>
             </label>
@@ -22,5 +20,5 @@ verificaUsuario();
         </form>
 </div>
 
-<?php 
+<?php
 include("rodape.php");  ?>

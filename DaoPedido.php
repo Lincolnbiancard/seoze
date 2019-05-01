@@ -6,7 +6,8 @@ class DaoPedido {
     private $conexao;
 
     function __construct($conexao){
-        $this->conexao = $conexao;
+        $this->conecta = new conecta();
+		$this->conexao = $this->conecta->conectar();
     }
 
     public function listaPedidos() {
