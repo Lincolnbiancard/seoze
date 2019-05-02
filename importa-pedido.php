@@ -1,7 +1,6 @@
 <?php 
 require_once("cabecalho.php");
-
-
+require_once("HttpResponse.php");
 
 verificaUsuario();
 ?>

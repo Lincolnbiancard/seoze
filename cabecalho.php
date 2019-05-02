@@ -16,6 +16,7 @@
 	<title>SeoZe</title>
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/loja.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -44,3 +45,6 @@
 		<div class="principal">
 			<?php  mostraAlerta("success"); ?>
 			<?php mostraAlerta("danger"); ?>
+
+
+			

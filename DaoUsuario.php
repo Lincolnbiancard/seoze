@@ -1,6 +1,10 @@
 <?php
 require_once("conecta.php");
 
+$conecta = new conecta();
+
+$conexao = $conecta->conectar();
+
 function buscaUsuario($conexao, $email, $senha) {
 
 	$senhaMd5 = md5($senha);

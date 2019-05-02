@@ -12,11 +12,12 @@ class DaoPedido {
 
     public function listaPedidos() {
         $pedidos = array();
-        $resultado = mysqli_query($this->conexao, "select nome_cliente, data, canal_venda, status from pedido");
-        $pedido = new Pedido();
+        $resultado = mysqli_query($this->conexao, "select id, nome_cliente, data, canal_venda, status from pedido");
+        
 
         while($pedido_array = mysqli_fetch_assoc($resultado)) {
-
+            $pedido = new Pedido();
+            $pedido->setId($pedido_array['id']);
             $pedido->setData($pedido_array['data']);
             $pedido->setNome($pedido_array['nome_cliente']);
             $pedido->setCanalVenda($pedido_array['canal_venda']);

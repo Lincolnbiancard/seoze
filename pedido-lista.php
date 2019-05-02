@@ -19,9 +19,10 @@
 	
 	$class = new DaoPedido($conexao);
 	$pedidos = $class->listaPedidos();
-
+	
 	
 	foreach($pedidos as $pedido) :
+		$pedido->getId();
 	?>
 		<tr>
 			<td><?= $pedido->getNome() ?></td>
@@ -35,7 +36,7 @@
 				</a>
 			</td>
 			<td>
-				<form action="<?= $class->removePedido($id) ?>" method="post">
+				<form action="remove-pedido.php" method="post">
 					<input type="hidden" name="id" value="<?=$pedido->getId()?>">
 					<button class="btn btn-danger">Deletar</button>
 				</form>
